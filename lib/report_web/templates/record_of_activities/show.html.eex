@@ -1,0 +1,13 @@
+<h2>Show Record of activities</h2>
+
+<ul>
+
+  <li>
+    <strong>Last edit date:</strong>
+    <%= @record_of_activities.last_edit_date %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: record_of_activities_path(@conn, :edit, @record_of_activities) %></span>
+<span><%= link "Back", to: record_of_activities_path(@conn, :index) %></span>

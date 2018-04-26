@@ -1,0 +1,63 @@
+<h2>Show Entry</h2>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @entry.title %>
+  </li>
+
+  <li>
+    <strong>Serial number:</strong>
+    <%= @entry.serial_number %>
+  </li>
+
+  <li>
+    <strong>Categories:</strong>
+    <%= @entry.categories %>
+  </li>
+
+  <li>
+    <strong>Sensitive categories:</strong>
+    <%= @entry.sensitive_categories %>
+  </li>
+
+  <li>
+    <strong>Delete deadline:</strong>
+    <%= @entry.delete_deadline %>
+  </li>
+
+  <li>
+    <strong>Origin:</strong>
+    <%= @entry.origin %>
+  </li>
+
+  <li>
+    <strong>Department:</strong>
+    <%= @entry.department %>
+  </li>
+
+  <li>
+    <strong>Receiver:</strong>
+    <%= @entry.receiver %>
+  </li>
+
+  <li>
+    <strong>Purpose:</strong>
+    <%= @entry.purpose %>
+  </li>
+
+  <li>
+    <strong>Legality:</strong>
+    <%= @entry.legality %>
+  </li>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @entry.type %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: entry_path(@conn, :edit, @entry) %></span>
+<span><%= link "Back", to: entry_path(@conn, :index) %></span>

@@ -1,0 +1,77 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :title, class: "control-label" %>
+    <%= textarea f, :title, class: "form-control" %>
+    <%= error_tag f, :title %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :serial_number, class: "control-label" %>
+    <%= number_input f, :serial_number, class: "form-control" %>
+    <%= error_tag f, :serial_number %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :categories, class: "control-label" %>
+    <%= textarea f, :categories, class: "form-control" %>
+    <%= error_tag f, :categories %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :sensitive_categories, class: "control-label" %>
+    <%= textarea f, :sensitive_categories, class: "form-control" %>
+    <%= error_tag f, :sensitive_categories %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :delete_deadline, class: "control-label" %>
+    <%= textarea f, :delete_deadline, class: "form-control" %>
+    <%= error_tag f, :delete_deadline %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :origin, class: "control-label" %>
+    <%= textarea f, :origin, class: "form-control" %>
+    <%= error_tag f, :origin %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :department, class: "control-label" %>
+    <%= textarea f, :department, class: "form-control" %>
+    <%= error_tag f, :department %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :receiver, class: "control-label" %>
+    <%= textarea f, :receiver, class: "form-control" %>
+    <%= error_tag f, :receiver %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :purpose, class: "control-label" %>
+    <%= textarea f, :purpose, class: "form-control" %>
+    <%= error_tag f, :purpose %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :legality, class: "control-label" %>
+    <%= textarea f, :legality, class: "form-control" %>
+    <%= error_tag f, :legality %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :type, class: "control-label" %>
+    <%= textarea f, :type, class: "form-control" %>
+    <%= error_tag f, :type %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

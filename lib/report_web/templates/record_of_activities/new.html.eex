@@ -1,0 +1,5 @@
+<h2>New Record of activities</h2>
+
+<%= render "form.html", Map.put(assigns, :action, record_of_activities_path(@conn, :create)) %>
+
+<span><%= link "Back", to: record_of_activities_path(@conn, :index) %></span>

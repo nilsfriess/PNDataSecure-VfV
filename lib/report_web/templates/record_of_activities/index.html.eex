@@ -1,0 +1,26 @@
+<h2>Listing Records of activities</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Last edit date</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for record_of_activities <- @records_of_activities do %>
+    <tr>
+      <td><%= record_of_activities.last_edit_date %></td>
+
+      <td class="text-right">
+        <%# <span><%= link "Show", to: record_of_activities_path(@conn, :show, record_of_activities), class: "btn btn-default btn-xs" %></span> %>
+        <%# <span><%= link "Edit", to: record_of_activities_path(@conn, :edit, record_of_activities), class: "btn btn-default btn-xs" %></span> %>
+        <%# <span><%= link "Delete", to: record_of_activities_path(@conn, :delete, record_of_activities), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span> %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%# <span><%= link "New Record of activities", to: record_of_activities_path(@conn, :new) %></span> %>
