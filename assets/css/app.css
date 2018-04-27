@@ -1,1 +1,56 @@
 /* This file is for your main application css. */
+
+body {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+header,
+footer {
+  padding-left: 300px;
+}
+
+main {
+  padding: 24px;
+  padding-left: 324px;
+}
+
+nav {
+  padding-left: 24px;
+}
+
+.title {
+  padding-bottom: 24px;
+}
+
+.user-view {
+  text-align: right;
+  height: 130px;
+}
+
+.logout {
+  position: absolute;
+  bottom: 80px;
+  width: 100%;
+}
+
+.background-logo {
+  width: 100%;
+}
+
+.add-comapany-tap-target:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.search-person-in-charge-button {
+  margin-top: 22px;
+}
+
+@media only screen and (max-width: 992px) {
+  header,
+  main,
+  footer {
+    padding-left: 0;
+  }
+}

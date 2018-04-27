@@ -1,5 +1,61 @@
-<h2>New Record of activities</h2>
+<div class="row">
+  <%= form_for @changeset, entry_path(@conn, :create), [class: "col s12"], fn f -> %>
+    <div class="row">
+      <div class="input-field col s8">
+        <%= textarea f, :title, [class: "materialize-textarea title-autocomplete", required: nil] %>
+        <label for="record_of_activities_title">Bezeichnung *</label>
+      </div>
+      <div class="input-field col s2 offset-s2">
+        <input type="number" id="serial-number">
+        <label for="">Lfd. Nr. *</label>
+      </div>
+    </div>
 
-<%= render "form.html", Map.put(assigns, :action, record_of_activities_path(@conn, :create)) %>
+    <div class="row">
+      <div class="input-field col s8">
+        <%= text_input f, :contact_person %>
+        <label for="">Kontaktperson *</label>
+      </div>
+      <a href="#choosePersonInCharge" class="search-person-in-charge-button col s2 offset-s2 waves-effect waves-light btn modal-trigger">Suchen</a>
+    </div>
 
-<span><%= link "Back", to: record_of_activities_path(@conn, :index) %></span>
+    <div class="row">
+      <div class="input-field col s8">
+        <%= text_input f, :person_in_charge %>
+        <label for="">Verantwortliche Abteilung *</label>
+      </div>
+      <a href="#chooseDepartment" class="search-department-button col s2 offset-s2 waves-effect waves-light btn modal-trigger">Suchen</a>
+      <!-- <a href="#choosePersonInCharge" class="search-person-in-charge-button col s5 offset-s1 waves-effect waves-light btn modal-trigger">Verantwortlichen suchen</a> -->
+    </div>
+  <% end %>
+</div>
+
+<p class="blue-grey-text text-lighten-2">Mit * markierte Felder müssen ausgefüllt werden </p>
+
+<div class="modal bottom-sheet" id="choosePersonInCharge">
+  <div class="modal-content">
+    <h4>Kontaktperson auswählen</h4>
+    <div class="collection">
+      <%= for person <- @employees do %>
+        <a class="collection-item"><%= person.name %></a>
+      <% end %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Auswählen</a>
+  </div>
+</div>
+
+<div class="modal bottom-sheet" id="chooseDepartment">
+  <div class="modal-content">
+    <h4>Abteilung auswählen</h4>
+    <div class="collection">
+      <%= for person <- @employees do %>
+        <a class="collection-item"><%= person.name %></a>
+      <% end %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Auswählen</a>
+  </div>
+</div>

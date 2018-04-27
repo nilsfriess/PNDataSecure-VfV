@@ -20,7 +20,11 @@ exports.config = {
       // }
     },
     stylesheets: {
-      joinTo: "css/app.css"
+      joinTo: "css/app.css",
+
+      order: {
+        before: ["css/reset.css"]
+      }
     },
     templates: {
       joinTo: "js/app.js"
@@ -57,6 +61,10 @@ exports.config = {
   },
 
   npm: {
-    enabled: true
+    enabled: true,
+    globals: {
+      $: "jquery",
+      jQuery: "jquery"
+    }
   }
 };

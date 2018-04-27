@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,28 +8,103 @@
     <meta name="author" content="">
 
     <title>Hello Report!</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
-    <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
+  <header>
+    <nav class="nav-extended teal darken-3">
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo">Verarbeitungsverzeichnis</a>
+      </div>
+      <div class="nav-content">
+        <h5 class="title"><%= assigns[:page_title] || "NO TITLE" %></h5>
+        <a id="add-entry" class="btn-floating btn-large halfway-fab waves-effect waves-light amber" href="/records/new">
+          <i class="material-icons">add</i>
+        </a>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+        <div class="tap-target teal darken-4" data-target="add-entry">
+          <div class="tap-target-content">
+            <h5>Eintrag erstellen</h5>
+            <p>Hier klicken, um dem Verarbeitungsverzeichnis einen neuen Eintrag hinzuzufügen</p>
+          </div>
+        </div>
+      </div>
 
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
+    </nav>
+  </header>
 
-    </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <ul id="slide-out" class="sidenav sidenav-fixed blue-grey darken-3">
+      <li>
+        <div class="user-view">
+          <div class="background">
+            <img class="background-logo" src="<%= static_path(@conn, "/images/header-logo.png") %>">
+          </div>
+          <span class="white-text name">Markus Berger</span>
+          <span class="white-text email">Musterfirma GmbH</span>
+        </div>
+      </li>
+      <li>
+        <%= link("Verarbeitungsverzeichnis", to: page_path(@conn, :index), class: "blue-grey-text text-lighten-3 subheader") %>
+      </li>
+      <li>
+        <%= link to: page_path(@conn, :index), class: "white-text" do %>
+          Übersicht
+          <i class="white-text material-icons">dashboard</i>
+        <% end %>
+      </li>
+      <li>
+        <%= link to: record_of_activities_path(@conn, :index), class: "white-text" do %>
+          Einträge anzeigen
+          <i class="white-text material-icons">view_list</i>
+        <% end %>
+      </li>
+      <li>
+        <%= link to: record_of_activities_path(@conn, :index), class: "white-text" do %>
+          Verzeichnis exportieren
+          <i class="white-text material-icons">file_download</i>
+        <% end %>
+      </li>
+      <li>
+        <div class="divider"></div>
+      </li>
+      <li>
+        <a class="blue-grey-text text-lighten-3 subheader">
+          Verwaltung
+        </a>
+      </li>
+      <li>
+        <a class="white-text">
+          Mitarbeiter
+          <i class="white-text material-icons">group</i>
+        </a>
+      </li>
+      <li>
+        <a class="white-text">
+          Einstellungen
+          <i class="white-text material-icons">settings</i>
+        </a>
+      </li>
+
+      <li class="logout">
+        <a href="" class="white-text">
+        Abmelden
+          <i class="white-text material-icons">lock</i>
+        </a>
+      </li>
+    </ul>
+    <%# <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a> %>
+
+    <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+    <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
+    <main role="main">
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+
+    <script defer src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
