@@ -41,15 +41,19 @@
           <div class="background">
             <img class="background-logo" src="<%= static_path(@conn, "/images/header-logo.png") %>">
           </div>
-          <span class="white-text name">Markus Berger</span>
-          <span class="white-text email">Musterfirma GmbH</span>
+          <span class="white-text name">
+            <%= @current_user.prename <> " " <> @current_user.name %>
+          </span>
+          <span class="white-text email">
+            <%= @current_user.email %>
+          </span>
         </div>
       </li>
       <li>
-        <%= link("Verarbeitungsverzeichnis", to: page_path(@conn, :index), class: "blue-grey-text text-lighten-3 subheader") %>
+        <%= link("Verarbeitungsverzeichnis", to: session_path(@conn, :index), class: "blue-grey-text text-lighten-3 subheader") %>
       </li>
       <li>
-        <%= link to: page_path(@conn, :index), class: "white-text" do %>
+        <%= link to: session_path(@conn, :index), class: "white-text" do %>
           Übersicht
           <i class="white-text material-icons">dashboard</i>
         <% end %>
@@ -88,7 +92,7 @@
       </li>
 
       <li class="logout">
-        <a href="" class="white-text">
+        <a href="/logout" class="white-text">
         Abmelden
           <i class="white-text material-icons">lock</i>
         </a>

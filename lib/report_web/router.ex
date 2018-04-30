@@ -9,15 +9,27 @@ defmodule ReportWeb.Router do
     plug(:put_secure_browser_headers)
   end
 
-  pipeline :api do
-    plug(:accepts, ["json"])
+  pipeline :auth do
+    plug(Report.Auth.Pipeline)
+    plug(Report.Auth.CurrentUser)
+  end
+
+  pipeline :ensure_auth do
+    plug(Guardian.Plug.EnsureAuthenticated)
   end
 
   scope "/", ReportWeb do
     # Use the default browser stack
-    pipe_through(:browser)
+    pipe_through([:browser, :auth])
 
-    get("/", PageController, :index)
+    get("/", SessionController, :index)
+    post("/login", SessionController, :login)
+
+    get("/logout", SessionController, :logout)
+  end
+
+  scope "/", ReportWeb do
+    pipe_through([:browser, :auth, :ensure_auth])
 
     get("/records", RecordOfActivitiesController, :index)
     post("/records", RecordOfActivitiesController, :create)
@@ -29,9 +41,4 @@ defmodule ReportWeb.Router do
     # resources("/records_of_activities", RecordOfActivitiesController)
     resources("/entries", EntryController)
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", ReportWeb do
-  #   pipe_through :api
-  # end
 end

@@ -1,0 +1,14 @@
+.login-wrapper {
+  min-width: 100vw;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.login-wrapper .alert-danger {
+  color: orangered;
+  font-size: 1.2em;
+}

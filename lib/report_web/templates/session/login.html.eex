@@ -1,0 +1,24 @@
+<div class="row">
+  <h3>Anmelden</h3>
+  <div class="col s12 card">
+    <div class="card-content">
+      <%= form_for @changeset, session_path(@conn, :login), fn f -> %>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= email_input f, :email %>
+            <%= label f, :email do %>
+              E-Mail
+            <% end %>
+          </div>
+          <div class="input-field col s12">
+            <%= password_input f, :password %>
+            <%= label f, :password do %>
+              Passwort
+            <% end %>
+          </div>
+        </div>
+        <%= submit "Anmelden", class: "btn waves-effect waves-light" %>
+      <% end %>
+    </div>
+  </div>
+</div>
