@@ -5,6 +5,8 @@ body {
   overflow-x: hidden;
 }
 
+/* add padding for sidenav */
+
 header,
 footer {
   padding-left: 300px;
@@ -13,11 +15,15 @@ footer {
 main {
   padding: 24px;
   padding-left: 324px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 nav {
   padding-left: 24px;
 }
+
+/* component styles */
 
 .title {
   padding-bottom: 24px;
@@ -43,14 +49,48 @@ nav {
   text-decoration: underline;
 }
 
-.search-person-in-charge-button {
+.tap-target-content p {
+  line-height: 1.5em;
+}
+
+.search-button {
   margin-top: 22px;
+}
+
+.add-category-input-field {
+  position: relative;
+}
+
+.input-btn {
+  position: absolute;
+  right: -65px;
+  top: 0px;
+}
+
+.input-btn i {
+  color: teal;
+  font-size: 2.5em;
+  transition: 300ms;
+}
+
+.input-btn i:hover {
+  color: #fff;
+}
+
+.delete-icon {
+  margin-left: 12px;
+}
+
+.margin-top {
+  margin-top: 60px;
 }
 
 @media only screen and (max-width: 992px) {
   header,
-  main,
   footer {
     padding-left: 0;
+  }
+  main {
+    padding-left: 24px;
   }
 }

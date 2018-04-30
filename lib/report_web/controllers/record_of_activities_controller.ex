@@ -76,4 +76,10 @@ defmodule ReportWeb.RecordOfActivitiesController do
 
     # |> redirect(to: record_of_activities_path(conn, :index))
   end
+
+  def export(conn, _params) do
+    conn
+    |> assign(:page_title, "Verzeichnis exportieren")
+    |> render("export.html")
+  end
 end

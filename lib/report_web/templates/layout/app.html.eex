@@ -15,23 +15,21 @@
   </head>
 
   <body>
+
+    <div class="fixed-action-btn">
+      <%= link(to: record_of_activities_path(@conn, :new), class: "btn-floating btn-large amber",  id: "add-entry") do %>
+        <i class="large material-icons">add</i>
+      <% end %>
+    </div>
+
   <header>
     <nav class="nav-extended teal darken-3">
       <div class="nav-wrapper">
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <a href="/" class="brand-logo">Verarbeitungsverzeichnis</a>
       </div>
       <div class="nav-content">
         <h5 class="title"><%= assigns[:page_title] || "NO TITLE" %></h5>
-        <a id="add-entry" class="btn-floating btn-large halfway-fab waves-effect waves-light amber" href="/records/new">
-          <i class="material-icons">add</i>
-        </a>
-
-        <div class="tap-target teal darken-4" data-target="add-entry">
-          <div class="tap-target-content">
-            <h5>Eintrag erstellen</h5>
-            <p>Hier klicken, um dem Verarbeitungsverzeichnis einen neuen Eintrag hinzuzufügen</p>
-          </div>
-        </div>
       </div>
 
     </nav>
@@ -63,7 +61,7 @@
         <% end %>
       </li>
       <li>
-        <%= link to: record_of_activities_path(@conn, :index), class: "white-text" do %>
+        <%= link to: record_of_activities_path(@conn, :export), class: "white-text" do %>
           Verzeichnis exportieren
           <i class="white-text material-icons">file_download</i>
         <% end %>
@@ -105,6 +103,13 @@
       <%= render @view_module, @view_template, assigns %>
     </main>
 
-    <script defer src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <div class="tap-target teal darken-4" data-target="add-entry">
+      <div class="tap-target-content">
+        <h5 class="white-text">Eintrag erstellen</h5>
+        <p class="white-text">Hier klicken, um dem Verarbeitungsverzeichnis einen neuen Eintrag hinzuzufügen</p>
+      </div>
+    </div>
+
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

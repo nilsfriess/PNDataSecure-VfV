@@ -21,8 +21,8 @@ defmodule ReportWeb.Router do
 
     get("/records", RecordOfActivitiesController, :index)
     post("/records", RecordOfActivitiesController, :create)
-
     get("/records/new", RecordOfActivitiesController, :new)
+    get("/records/export", RecordOfActivitiesController, :export)
 
     resources("/companies", CompanyController)
     resources("/employees", EmployeeController)
