@@ -20,7 +20,7 @@ defmodule Report.Mixfile do
   def application do
     [
       mod: {Report.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :edeliver]
     ]
   end
 
@@ -43,7 +43,9 @@ defmodule Report.Mixfile do
       {:cowboy, "~> 1.0"},
       {:guardian, "~> 1.0"},
       {:comeonin, " ~> 4.1"},
-      {:argon2_elixir, "~> 1.2"}
+      {:argon2_elixir, "~> 1.2"},
+      {:edeliver, "~> 1.5.0"},
+      {:distillery, "~> 1.5.2", warn_missing: false}
     ]
   end
 
