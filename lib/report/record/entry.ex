@@ -2,6 +2,9 @@ defmodule Report.Record.Entry do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Report.Record.RecordOfActivities
+  alias Report.Administration.Employee
+
   schema "entries" do
     field(:categories, :string)
     field(:delete_deadline, :string)
@@ -14,8 +17,9 @@ defmodule Report.Record.Entry do
     field(:serial_number, :integer)
     field(:title, :string)
     field(:type, :string)
-    field(:record_id, :id)
-    field(:contact_person_id, :id)
+
+    belongs_to(:record, RecordOfActivities, foreign_key: :record_id)
+    belongs_to(:contact_preson, Employee, foreign_key: :contact_person_id)
 
     timestamps()
   end

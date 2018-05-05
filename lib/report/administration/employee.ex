@@ -2,6 +2,8 @@ defmodule Report.Administration.Employee do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Report.Administration.Company
+
   schema "employees" do
     field(:city, :string)
     field(:email, :string)
@@ -10,7 +12,8 @@ defmodule Report.Administration.Employee do
     field(:phone, :string)
     field(:prename, :string)
     field(:street, :string)
-    field(:employer_id, :id)
+
+    belongs_to(:company, Company, foreign_key: :employer_id)
 
     field(:password, :string, virtual: true)
 

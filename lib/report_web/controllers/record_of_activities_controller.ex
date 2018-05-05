@@ -6,11 +6,17 @@ defmodule ReportWeb.RecordOfActivitiesController do
   alias Report.Record.Entry
 
   def index(conn, _params) do
+    conn
+    |> assign(:page_title, "Übersicht")
+    |> render("index.html")
+  end
+
+  def list(conn, _params) do
     records_of_activities = Record.list_records_of_activities()
 
     conn
-    |> assign(:page_title, "Übersicht")
-    |> render("index.html", records_of_activities: records_of_activities)
+    |> assign(:page_title, "Einträge")
+    |> render("list.html", records_of_activities: records_of_activities)
   end
 
   def new(conn, _params) do
@@ -81,5 +87,11 @@ defmodule ReportWeb.RecordOfActivitiesController do
     conn
     |> assign(:page_title, "Verzeichnis exportieren")
     |> render("export.html")
+  end
+
+  def master_data(conn, _params) do
+    conn
+    |> assign(:page_title, "Stammdaten")
+    |> render("masterdata.html")
   end
 end

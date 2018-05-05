@@ -9,10 +9,7 @@ defmodule ReportWeb.SessionController do
 
   def index(conn, _params) do
     changeset = Administration.change_employee(%Employee{})
-
     user = Guardian.Plug.current_resource(conn)
-
-    IO.inspect(conn)
 
     if user != nil do
       conn

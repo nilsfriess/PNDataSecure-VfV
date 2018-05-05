@@ -31,10 +31,13 @@ defmodule ReportWeb.Router do
   scope "/", ReportWeb do
     pipe_through([:browser, :auth, :ensure_auth])
 
-    get("/records", RecordOfActivitiesController, :index)
+    get("/overview", RecordOfActivitiesController, :index)
+    get("/records", RecordOfActivitiesController, :list)
     post("/records", RecordOfActivitiesController, :create)
     get("/records/new", RecordOfActivitiesController, :new)
     get("/records/export", RecordOfActivitiesController, :export)
+
+    get("/masterdata", RecordOfActivitiesController, :master_data)
 
     resources("/companies", CompanyController)
     resources("/employees", EmployeeController)

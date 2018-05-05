@@ -8,6 +8,7 @@ defmodule Report.Repo.Migrations.CreateRecordsOfActivities do
       add(:person_in_charge_id, references(:employees, on_delete: :nothing))
       add(:proxy_of_person_in_charge_id, references(:employees, on_delete: :nothing))
       add(:data_privacy_officer_id, references(:employees, on_delete: :nothing))
+      add(:company_id, references(:companies, on_delete: :delete_all))
 
       timestamps()
     end
@@ -16,5 +17,6 @@ defmodule Report.Repo.Migrations.CreateRecordsOfActivities do
     create(index(:records_of_activities, [:person_in_charge_id]))
     create(index(:records_of_activities, [:proxy_of_person_in_charge_id]))
     create(index(:records_of_activities, [:data_privacy_officer_id]))
+    create(index(:records_of_activities, [:company_id]))
   end
 end

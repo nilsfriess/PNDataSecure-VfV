@@ -85,6 +85,11 @@ nav {
   margin-top: 60px;
 }
 
+.divider {
+  width: 93%;
+  transform: translateX(7%);
+}
+
 @media only screen and (max-width: 992px) {
   header,
   footer {

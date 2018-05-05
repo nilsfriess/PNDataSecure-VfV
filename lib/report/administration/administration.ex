@@ -7,6 +7,7 @@ defmodule Report.Administration do
   alias Report.Repo
 
   alias Report.Administration.Company
+  alias Report.Record.RecordOfActivities
 
   @doc """
   Returns the list of companies.
@@ -19,6 +20,7 @@ defmodule Report.Administration do
   """
   def list_companies do
     Repo.all(Company)
+    |> Repo.preload(:record)
   end
 
   @doc """
@@ -35,7 +37,10 @@ defmodule Report.Administration do
       ** (Ecto.NoResultsError)
 
   """
-  def get_company!(id), do: Repo.get!(Company, id)
+  def get_company!(id) do
+    Repo.get!(Company, id)
+    |> Repo.preload(:record)
+  end
 
   @doc """
   Creates a company.
@@ -50,9 +55,25 @@ defmodule Report.Administration do
 
   """
   def create_company(attrs \\ %{}) do
-    %Company{}
-    |> Company.changeset(attrs)
-    |> Repo.insert()
+    company =
+      %Company{}
+      |> Company.changeset(attrs)
+      |> Repo.insert()
+
+    case company do
+      {:ok, company} ->
+        {:ok, record} =
+          %RecordOfActivities{}
+          |> RecordOfActivities.changeset(%{})
+          |> Ecto.Changeset.put_assoc(:company, company)
+          |> Repo.insert()
+
+        company
+        |> Repo.preload(:record)
+
+      err ->
+        err
+    end
   end
 
   @doc """
@@ -115,6 +136,7 @@ defmodule Report.Administration do
   """
   def list_employees do
     Repo.all(Employee)
+    |> Repo.preload(:company)
   end
 
   @doc """
@@ -131,7 +153,10 @@ defmodule Report.Administration do
       ** (Ecto.NoResultsError)
 
   """
-  def get_employee!(id), do: Repo.get!(Employee, id)
+  def get_employee!(id) do
+    Repo.get!(Employee, id)
+    |> Repo.preload(company: :record)
+  end
 
   @doc """
   Creates a employee.
@@ -145,9 +170,10 @@ defmodule Report.Administration do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_employee(attrs \\ %{}) do
+  def create_employee(attrs, company) do
     %Employee{}
     |> Employee.changeset(attrs)
+    |> Ecto.Changeset.put_assoc(:company, company)
     |> Repo.insert()
   end
 

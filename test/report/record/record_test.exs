@@ -30,31 +30,31 @@ defmodule Report.RecordTest do
     end
 
     test "create_record_of_activities/1 with valid data creates a record_of_activities" do
-      assert {:ok, %RecordOfActivities{} = record_of_activities} = Record.create_record_of_activities(@valid_attrs)
-      assert record_of_activities.last_edit_date == ~D[2010-04-17]
-    end
+      assert {:ok, %RecordOfActivities{} = record_of_activities} =
+               Record.create_record_of_activities(@valid_attrs)
 
-    test "create_record_of_activities/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Record.create_record_of_activities(@invalid_attrs)
+      assert record_of_activities.last_edit_date == ~D[2010-04-17]
     end
 
     test "update_record_of_activities/2 with valid data updates the record_of_activities" do
       record_of_activities = record_of_activities_fixture()
-      assert {:ok, record_of_activities} = Record.update_record_of_activities(record_of_activities, @update_attrs)
+
+      assert {:ok, record_of_activities} =
+               Record.update_record_of_activities(record_of_activities, @update_attrs)
+
       assert %RecordOfActivities{} = record_of_activities
       assert record_of_activities.last_edit_date == ~D[2011-05-18]
     end
 
-    test "update_record_of_activities/2 with invalid data returns error changeset" do
-      record_of_activities = record_of_activities_fixture()
-      assert {:error, %Ecto.Changeset{}} = Record.update_record_of_activities(record_of_activities, @invalid_attrs)
-      assert record_of_activities == Record.get_record_of_activities!(record_of_activities.id)
-    end
-
     test "delete_record_of_activities/1 deletes the record_of_activities" do
       record_of_activities = record_of_activities_fixture()
-      assert {:ok, %RecordOfActivities{}} = Record.delete_record_of_activities(record_of_activities)
-      assert_raise Ecto.NoResultsError, fn -> Record.get_record_of_activities!(record_of_activities.id) end
+
+      assert {:ok, %RecordOfActivities{}} =
+               Record.delete_record_of_activities(record_of_activities)
+
+      assert_raise Ecto.NoResultsError, fn ->
+        Record.get_record_of_activities!(record_of_activities.id)
+      end
     end
 
     test "change_record_of_activities/1 returns a record_of_activities changeset" do
@@ -66,9 +66,45 @@ defmodule Report.RecordTest do
   describe "entries" do
     alias Report.Record.Entry
 
-    @valid_attrs %{categories: "some categories", delete_deadline: "some delete_deadline", department: "some department", legality: "some legality", origin: "some origin", purpose: "some purpose", receiver: "some receiver", sensitive_categories: "some sensitive_categories", serial_number: 42, title: "some title", type: "some type"}
-    @update_attrs %{categories: "some updated categories", delete_deadline: "some updated delete_deadline", department: "some updated department", legality: "some updated legality", origin: "some updated origin", purpose: "some updated purpose", receiver: "some updated receiver", sensitive_categories: "some updated sensitive_categories", serial_number: 43, title: "some updated title", type: "some updated type"}
-    @invalid_attrs %{categories: nil, delete_deadline: nil, department: nil, legality: nil, origin: nil, purpose: nil, receiver: nil, sensitive_categories: nil, serial_number: nil, title: nil, type: nil}
+    @valid_attrs %{
+      categories: "some categories",
+      delete_deadline: "some delete_deadline",
+      department: "some department",
+      legality: "some legality",
+      origin: "some origin",
+      purpose: "some purpose",
+      receiver: "some receiver",
+      sensitive_categories: "some sensitive_categories",
+      serial_number: 42,
+      title: "some title",
+      type: "some type"
+    }
+    @update_attrs %{
+      categories: "some updated categories",
+      delete_deadline: "some updated delete_deadline",
+      department: "some updated department",
+      legality: "some updated legality",
+      origin: "some updated origin",
+      purpose: "some updated purpose",
+      receiver: "some updated receiver",
+      sensitive_categories: "some updated sensitive_categories",
+      serial_number: 43,
+      title: "some updated title",
+      type: "some updated type"
+    }
+    @invalid_attrs %{
+      categories: nil,
+      delete_deadline: nil,
+      department: nil,
+      legality: nil,
+      origin: nil,
+      purpose: nil,
+      receiver: nil,
+      sensitive_categories: nil,
+      serial_number: nil,
+      title: nil,
+      type: nil
+    }
 
     def entry_fixture(attrs \\ %{}) do
       {:ok, entry} =

@@ -7,8 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Report!</title>
-    <!--Import Google Icon Font-->
+    <title>PN DataSecure - Verarbeitungsverzeichnis</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
@@ -45,12 +44,14 @@
             <%= @current_user.prename <> " " <> @current_user.name %>
           </span>
           <span class="white-text email">
-            <%= @current_user.email %>
+            <%= @current_company.name %>
           </span>
         </div>
       </li>
       <li>
-        <%= link("Verarbeitungsverzeichnis", to: session_path(@conn, :index), class: "blue-grey-text text-lighten-3 subheader") %>
+        <a class="blue-grey-text text-lighten-3 subheader">
+          Allgemeines
+        </a>
       </li>
       <li>
         <%= link to: session_path(@conn, :index), class: "white-text" do %>
@@ -58,8 +59,43 @@
           <i class="white-text material-icons">dashboard</i>
         <% end %>
       </li>
+       <li>
+        <%= link to: record_of_activities_path(@conn, :master_data), class: "white-text" do %>
+          Stammdaten
+          <i class="white-text material-icons">assignment_ind</i>
+        <% end %>
+      </li>
       <li>
-        <%= link to: record_of_activities_path(@conn, :index), class: "white-text" do %>
+        <div class="divider"></div>
+      </li>
+      <li>
+        <a class="blue-grey-text text-lighten-3 subheader">
+          Verzeichnis für Verantwortliche
+        </a>
+      </li>
+      <li>
+        <%= link to: record_of_activities_path(@conn, :list), class: "white-text" do %>
+          Einträge anzeigen
+          <i class="white-text material-icons">view_list</i>
+        <% end %>
+      </li>
+      <li>
+        <%= link to: record_of_activities_path(@conn, :export), class: "white-text" do %>
+          Verzeichnis exportieren
+          <i class="white-text material-icons">file_download</i>
+        <% end %>
+      </li>
+      <li>
+        <div style="opacity: 0" class="divider"></div>
+        <div class="divider"></div>
+      </li>
+      <li>
+        <a class="blue-grey-text text-lighten-3 subheader">
+          Verzeichnis für Auftragsverarbeiter
+        </a>
+      </li>
+      <li>
+        <%= link to: record_of_activities_path(@conn, :list), class: "white-text" do %>
           Einträge anzeigen
           <i class="white-text material-icons">view_list</i>
         <% end %>

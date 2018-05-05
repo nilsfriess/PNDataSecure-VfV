@@ -1,0 +1,10 @@
+<h5>Verantwortliche Person</h5>
+<div class="person-container">
+  <%= if assigns[:person_in_charge] do %>
+    <p>person in charge</p>
+  <%= else %>
+    <p>no pic</p>
+  <% end %>
+</div>
+<h5>Vertreter der verantwortlichen Person</h5>
+<h5>Datenschutzbeauftragter</h5>
