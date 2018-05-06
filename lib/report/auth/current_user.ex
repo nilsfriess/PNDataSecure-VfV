@@ -5,9 +5,6 @@ defmodule Report.Auth.CurrentUser do
   def init(opts), do: opts
 
   def call(conn, _opts) do
-    IO.puts("Current resource")
-    IO.inspect(current_resource(conn))
-
     case current_resource(conn) do
       nil ->
         conn

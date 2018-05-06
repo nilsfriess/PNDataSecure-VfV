@@ -38,10 +38,5 @@ defmodule ReportWeb.Router do
     get("/records/export", RecordOfActivitiesController, :export)
 
     get("/masterdata", RecordOfActivitiesController, :master_data)
-
-    resources("/companies", CompanyController)
-    resources("/employees", EmployeeController)
-    # resources("/records_of_activities", RecordOfActivitiesController)
-    resources("/entries", EntryController)
   end
 end

@@ -62,7 +62,7 @@ defmodule Report.Administration do
 
     case company do
       {:ok, company} ->
-        {:ok, record} =
+        {:ok, _record} =
           %RecordOfActivities{}
           |> RecordOfActivities.changeset(%{})
           |> Ecto.Changeset.put_assoc(:company, company)

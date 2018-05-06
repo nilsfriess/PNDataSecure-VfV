@@ -35,7 +35,7 @@ defmodule ReportWeb.SessionController do
     conn
     |> put_flash(:success, "User logged in")
     |> Report.Auth.Guardian.Plug.sign_in(user)
-    |> redirect(to: "/")
+    |> redirect(to: record_of_activities_path(conn, :index))
   end
 
   def logout(conn, _params) do

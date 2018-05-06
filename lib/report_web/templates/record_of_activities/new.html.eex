@@ -1,5 +1,5 @@
 <div class="row">
-  <%= form_for @changeset, entry_path(@conn, :create), [class: "col s12"], fn f -> %>
+  <%= form_for @changeset, "/entry/create", [class: "col s12"], fn f -> %>
     <div class="row">
       <div class="input-field col s8">
         <%= textarea f, :title, [class: "materialize-textarea title-autocomplete", required: nil] %>

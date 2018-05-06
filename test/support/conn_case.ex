@@ -35,8 +35,4 @@ defmodule ReportWeb.ConnCase do
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
-
-  @doc """
-  Helper for setting up a `conn` which logs in a user
-  """
 end

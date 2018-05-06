@@ -11,7 +11,7 @@ defmodule Report.Administration.Company do
     field(:name, :string)
     field(:phone, :string)
 
-    has_many(:employees, Employee)
+    has_many(:employees, Employee, foreign_key: :employer_id)
 
     has_one(:record, RecordOfActivities, on_delete: :delete_all)
 

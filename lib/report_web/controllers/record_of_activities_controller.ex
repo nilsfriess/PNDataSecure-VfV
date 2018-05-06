@@ -2,7 +2,6 @@ defmodule ReportWeb.RecordOfActivitiesController do
   use ReportWeb, :controller
 
   alias Report.Record
-  alias Report.Record.RecordOfActivities
   alias Report.Record.Entry
 
   def index(conn, _params) do
@@ -33,7 +32,7 @@ defmodule ReportWeb.RecordOfActivitiesController do
 
   def create(conn, %{"record_of_activities" => record_of_activities_params}) do
     case Record.create_record_of_activities(record_of_activities_params) do
-      {:ok, record_of_activities} ->
+      {:ok, _record_of_activities} ->
         conn
         |> put_flash(:info, "Record of activities created successfully.")
 
@@ -58,7 +57,7 @@ defmodule ReportWeb.RecordOfActivitiesController do
     record_of_activities = Record.get_record_of_activities!(id)
 
     case Record.update_record_of_activities(record_of_activities, record_of_activities_params) do
-      {:ok, record_of_activities} ->
+      {:ok, _record_of_activities} ->
         conn
         |> put_flash(:info, "Record of activities updated successfully.")
 

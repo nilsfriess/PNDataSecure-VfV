@@ -2,7 +2,7 @@
 <div class="person-container">
   <%= if assigns[:person_in_charge] do %>
     <p>person in charge</p>
-  <%= else %>
+  <% else %>
     <p>no pic</p>
   <% end %>
 </div>

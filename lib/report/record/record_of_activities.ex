@@ -12,7 +12,7 @@ defmodule Report.Record.RecordOfActivities do
     field(:proxy_of_person_in_charge_id, :id)
     field(:data_privacy_officer_id, :id)
 
-    has_many(:entries, Entry)
+    has_many(:entries, Entry, foreign_key: :record_id)
 
     belongs_to(:company, Company)
 
