@@ -47,6 +47,7 @@ defmodule Report.Mixfile do
       {:comeonin, " ~> 4.1"},
       {:argon2_elixir, "~> 1.2"},
       {:edeliver, "~> 1.5.0"},
+      {:distillery, "~> 1.0.0", warn_missing: false},
       {:excoveralls, "~> 0.8", only: :test}
     ]
   end
