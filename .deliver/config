@@ -4,6 +4,10 @@ BUILD_HOST="18.184.8.213"
 BUILD_USER="ubuntu"
 BUILD_AT="/home/ubuntu/report/builds"
 
+STAGING_HOST="18.184.8.213"
+STAGING_USER="ubuntu"
+BUILD_AT="/home/ubuntu/test_report/builds"
+
 PRODUCTION_HOSTS="18.184.8.213"
 PRODUCTION_USER="ubuntu"
 DELIVER_TO="/home/ubuntu"

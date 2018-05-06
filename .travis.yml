@@ -11,3 +11,7 @@ env:
 
 script:
   - mix coveralls.travis
+
+after_success:
+  - chmod +x deploy.sh
+  - ./deploy.sh
