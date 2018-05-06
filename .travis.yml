@@ -1,7 +1,10 @@
 language: elixir
+
 elixir:
   - '1.6'
+
 env:
   - MIX_ENV=test
+
 script:
-  - mix test && ./deploy.sh
+  - mix coveralls.travis

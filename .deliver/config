@@ -2,24 +2,14 @@ APP="report"
 
 BUILD_HOST="18.184.8.213"
 BUILD_USER="ubuntu"
-BUILD_AT="/tmp/edeliver/$APP/builds"
-
-RELEASE_DIR="/tmp/edeliver/$APP/builds/_build/prod/rel/$APP"
-
-# prevent re-installing node modules; this defaults to "."
-GIT_CLEAN_PATHS="_build rel priv/static"
-
-# STAGING_HOSTS="188.166.182.170"
-# STAGING_USER="deploy"
-# TEST_AT="/home/deploy/staging"
+BUILD_AT="/home/ubuntu/report/builds"
 
 PRODUCTION_HOSTS="18.184.8.213"
 PRODUCTION_USER="ubuntu"
-DELIVER_TO="/home/deploy"
+DELIVER_TO="/home/ubuntu"
 
-# For *Phoenix* projects, symlink prod.secret.exs to our tmp source
 pre_erlang_get_and_update_deps() {
-  local _prod_secret_path="/home/secret/prod.secret.exs"
+  local _prod_secret_path="/home/ubuntu/prod.secret.exs"
   if [ "$TARGET_MIX_ENV" = "prod" ]; then
     __sync_remote "
       ln -sfn '$_prod_secret_path' '$BUILD_AT/config/prod.secret.exs'
@@ -28,20 +18,33 @@ pre_erlang_get_and_update_deps() {
 }
 
 pre_erlang_clean_compile() {
-  status "Running phoenix.digest" # log output prepended with "----->"
-  __sync_remote " # runs the commands on the build host
-    # [ -f ~/.profile ] && source ~/.profile # load profile (optional)
-    source ~/.profile
-    # echo \$PATH # check if rbenv is in the path
-    set -e # fail if any command fails (recommended)
-    cd '$BUILD_AT' # enter the build directory on the build host (required)
-    # prepare something
-    mkdir -p priv/static # required by the phoenix.digest task
-    npm install 
+  status "Installing NPM dependencies"
+  __sync_remote "
+    [ -f ~/.profile ] && source ~/.profile
+    set -e
 
-    ./node_modules/brunch/bin/brunch build --production 
+    cd '$BUILD_AT/assets'
+    npm install $SILENCE
+  "
 
-    # run your custom task
+  status "Building static files"
+  __sync_remote "
+    [ -f ~/.profile ] && source ~/.profile
+    set -e
+
+    cd '$BUILD_AT'
+    mkdir -p priv/static
+
+    cd 'assets'
+    npm run deploy $SILENCE
+  "
+
+  status "Running phoenix.digest"
+  __sync_remote "
+    [ -f ~/.profile ] && source ~/.profile
+    set -e
+
+    cd '$BUILD_AT'
     APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phoenix.digest $SILENCE
   "
 }
