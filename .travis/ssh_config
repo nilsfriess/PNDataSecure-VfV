@@ -1,3 +1,2 @@
 Host 18.184.8.213
-    User ubuntu
-    IdentityFile ~/.ssh/deploy_rsa
+    IdentityFile ~/.ssh/pndsm-key.pem
