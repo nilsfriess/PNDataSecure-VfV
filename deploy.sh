@@ -1,5 +1,6 @@
 #!/bin/bash
 
+chmod 600 ~/.ssh/deploy_rsa
 cp .travis/ssh_config ~/.ssh/config
 
 mix edeliver build release
