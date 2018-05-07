@@ -3,6 +3,7 @@
 chmod 600 ~/.ssh/deploy_rsa
 cp .travis/ssh_config ~/.ssh/config
 
+cat ~/.ssh/config
 
 mix edeliver build release
 
