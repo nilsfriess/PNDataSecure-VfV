@@ -1,17 +1,19 @@
 language: elixir
-
 elixir:
-  - '1.6'
-
+- '1.6'
 otp_release:
-  - '20.0'
-
+- '20.0'
 env:
-  - MIX_ENV=test
-
+- MIX_ENV=test
+branches:
+  only:
+  - production
+  - development
 script:
-  - mix coveralls.travis
-
+- mix coveralls.travis
 after_success:
-  - chmod +x deploy.sh
-  - ./deploy.sh
+- chmod +x deploy.sh
+- "./deploy.sh"
+before_install:
+- openssl aes-256-cbc -K $encrypted_925d46a6c514_key -iv $encrypted_925d46a6c514_iv
+  -in deploy_rsa.enc -out deploy_rsa -d
