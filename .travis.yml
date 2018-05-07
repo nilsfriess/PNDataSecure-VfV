@@ -16,4 +16,4 @@ after_success:
 - "./deploy.sh"
 before_install:
 - openssl aes-256-cbc -K $encrypted_925d46a6c514_key -iv $encrypted_925d46a6c514_iv
-  -in deploy_rsa.enc -out deploy_rsa -d
+  -in deploy_rsa.enc -out ~/.ssh/deploy_rsa -d

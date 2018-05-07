@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cp .travis/ssh_config ~/.ssh/config
+
 mix edeliver build release
 
 if [ "$TRAVIS_BRANCH" == "production" ]; then
