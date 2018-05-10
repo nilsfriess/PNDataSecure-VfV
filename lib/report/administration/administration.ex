@@ -155,7 +155,7 @@ defmodule Report.Administration do
   """
   def get_employee!(id) do
     Repo.get!(Employee, id)
-    |> Repo.preload(company: :record)
+    |> Repo.preload(company: [record: :entries])
   end
 
   @doc """

@@ -11,11 +11,9 @@ defmodule ReportWeb.RecordOfActivitiesController do
   end
 
   def list(conn, _params) do
-    records_of_activities = Record.list_records_of_activities()
-
     conn
     |> assign(:page_title, "Einträge")
-    |> render("list.html", records_of_activities: records_of_activities)
+    |> render("list.html")
   end
 
   def new(conn, _params) do

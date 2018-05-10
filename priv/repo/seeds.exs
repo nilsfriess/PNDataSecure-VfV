@@ -10,17 +10,14 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-alias Report.Administration.Company
+company = %{
+  name: "PN DataSecure",
+  address: "Königsberger Str. 5, 69198 Schriesheim",
+  email: "info@pn-datasecure.de",
+  phone: "017643853163"
+}
 
-company =
-  Report.Administration.change_company(%Company{
-    name: "PN DataSecure",
-    address: "Königsberger Str. 5, 69198 Schriesheim",
-    email: "info@pn-datasecure.de",
-    phone: "017643853163"
-  })
-
-company = Report.Repo.insert!(company)
+company = Report.Administration.create_company(company)
 
 employee =
   Report.Administration.create_employee(

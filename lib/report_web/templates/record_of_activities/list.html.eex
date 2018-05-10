@@ -1,6 +1,6 @@
 
 <div class="company-list">
-<%= if length(@records_of_activities) == 0 do  %>
+<%= if length(assigns[:current_record].entries) == 0 do  %>
   <h4>Noch keine Einträge vorhanden</h4>
   <p class="add-comapany-tap-target">Wie erstelle ich einen neuen Eintrag?</p>
 <% end %>

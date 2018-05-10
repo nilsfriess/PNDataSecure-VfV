@@ -14,12 +14,13 @@
   </head>
 
   <body>
-
-    <div class="fixed-action-btn">
-      <%= link(to: record_of_activities_path(@conn, :new), class: "btn-floating btn-large amber",  id: "add-entry") do %>
-        <i class="large material-icons">add</i>
-      <% end %>
-    </div>
+    <%= if @conn.request_path != record_of_activities_path(@conn, :new) do %>
+      <div class="fixed-action-btn">
+        <%= link(to: record_of_activities_path(@conn, :new), class: "btn-floating btn-large amber",  id: "add-entry") do %>
+          <i class="large material-icons">add</i>
+        <% end %>
+      </div>
+    <% end %>
 
   <header>
     <nav class="nav-extended teal darken-3">
@@ -66,6 +67,18 @@
         <% end %>
       </li>
       <li>
+        <a class="white-text">
+          Mitarbeiter
+          <i class="white-text material-icons">group</i>
+        </a>
+      </li>
+      <li>
+        <a class="white-text">
+          Abteilungen
+          <i class="white-text material-icons">domain</i>
+        </a>
+      </li>
+      <li>
         <div class="divider"></div>
       </li>
       <li>
@@ -85,48 +98,12 @@
           <i class="white-text material-icons">file_download</i>
         <% end %>
       </li>
-      <li>
-        <div style="opacity: 0" class="divider"></div>
-        <div class="divider"></div>
-      </li>
-      <li>
-        <a class="blue-grey-text text-lighten-3 subheader">
-          Verzeichnis für Auftragsverarbeiter
-        </a>
-      </li>
-      <li>
-        <%= link to: record_of_activities_path(@conn, :list), class: "white-text" do %>
-          Einträge anzeigen
-          <i class="white-text material-icons">view_list</i>
-        <% end %>
-      </li>
-      <li>
-        <%= link to: record_of_activities_path(@conn, :export), class: "white-text" do %>
-          Verzeichnis exportieren
-          <i class="white-text material-icons">file_download</i>
-        <% end %>
-      </li>
-      <li>
-        <div class="divider"></div>
-      </li>
-      <li>
-        <a class="blue-grey-text text-lighten-3 subheader">
-          Verwaltung
-        </a>
-      </li>
-      <li>
-        <a class="white-text">
-          Mitarbeiter
-          <i class="white-text material-icons">group</i>
-        </a>
-      </li>
-      <li>
+      <li class="settings">
         <a class="white-text">
           Einstellungen
           <i class="white-text material-icons">settings</i>
         </a>
       </li>
-
       <li class="logout">
         <a href="/logout" class="white-text">
         Abmelden

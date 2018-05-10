@@ -29,19 +29,46 @@
     </div>
 
     <div class="row margin-top">
-      <h5>Kategorien personenbezogener Daten</h5>
-      <ul class="col s8 collection categories"></ul>
-      <div class="input-field col s8 add-category-input-field">
-        <input type="text" name="category" id="category">
-        <label for="category">Weitere  hinzufügen</label>
-        <a class="btn-flat btn-large btn-floating waves-effect waves-teal add-category-btn  input-btn">
+      <h5>Kategorien betroffener Personen</h5>
+      <p>Eine (allgemeine) Beschreibung der Personen bzw. Personengruppen,<br> deren Daten verarbeitet werden</p>
+      <ul class="col s8 collection person-categories"></ul>
+      <div class="input-field col s8 add-person-category-input-field">
+        <input type="text" name="personsCategory" id="personsCategory">
+        <label for="personsCategory">Weitere  hinzufügen</label>
+        <a class="btn-flat btn-large btn-floating waves-effect waves-teal add-person-category-btn input-btn">
           <i class="material-icons medium add-icon">add</i>
         </a>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row margin-top">
+      <h5>Kategorien personenbezogener Daten</h5>
+      <p>Eine Beschreibung welcher Kategorie die verarbeiteten <br> personenbezogenen Daten zuzuordnen sind</p>
+      <ul class="col s8 collection categories"></ul>
+      <div class="input-field col s8 add-category-input-field">
+        <input type="text" name="category" id="category">
+        <label for="category">Weitere  hinzufügen</label>
+        <a class="btn-flat btn-large btn-floating waves-effect waves-teal add-category-btn input-btn">
+          <i class="material-icons medium add-icon">add</i>
+        </a>
+      </div>
+    </div>
+
+    <div class="row margin-top">
       <h5>Zwecke der Verarbeitung</h5>
+      <ul class="col s8 collection purposes"></ul>
+      <div class="input-field col s8 add-purpose-input-field">
+        <input type="text" name="purpose" id="purpose"> 
+        <label for="purpose">Weitere  hinzufügen</label>
+        <a class="btn-flat btn-large btn-floating waves-effect waves-teal add-purpose-btn input-btn">
+          <i class="material-icons medium add-icon">add</i>
+        </a>
+      </div>
+    </div>
+
+    <div class="row margin-top">
+      <h5>Speicherdauer/ Löschfristen</h5>
+      <p>Falls möglich, die vorgesehehen Fristen für die Löschung der <br>verschiedenen Kategorien</p>
       <ul class="col s8 collection purposes"></ul>
       <div class="input-field col s8 add-purpose-input-field">
         <input type="text" name="purpose" id="purpose"> 

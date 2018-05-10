@@ -113,8 +113,8 @@ defmodule Report.Record do
       [%Entry{}, ...]
 
   """
-  def list_entries do
-    Repo.all(Entry)
+  def list_entries(%RecordOfActivities{} = record) do
+    Repo.all(Ecto.assoc(record, :entries))
   end
 
   @doc """
@@ -196,5 +196,11 @@ defmodule Report.Record do
   """
   def change_entry(%Entry{} = entry) do
     Entry.changeset(entry, %{})
+  end
+
+  @doc """
+  Returns a new serial number
+  """
+  def generate_serial_number() do
   end
 end
