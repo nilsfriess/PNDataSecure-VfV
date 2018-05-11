@@ -3,17 +3,17 @@ defmodule Report.RecordTest do
 
   alias Report.Record
 
-  describe "records_of_activities" do
+  describe "records" do
     alias Report.Record.RecordOfActivities
 
-    @valid_attrs %{last_edit_date: ~D[2010-04-17]}
-    @update_attrs %{last_edit_date: ~D[2011-05-18]}
-    @invalid_attrs %{last_edit_date: nil}
+    @valid_record_attrs %{last_edit_date: ~D[2010-04-17]}
+    @update_record_attrs %{last_edit_date: ~D[2011-05-18]}
+    @invalid_record_attrs %{last_edit_date: nil}
 
     def record_of_activities_fixture(attrs \\ %{}) do
       {:ok, record_of_activities} =
         attrs
-        |> Enum.into(@valid_attrs)
+        |> Enum.into(@valid_record_attrs)
         |> Record.create_record_of_activities()
 
       record_of_activities
@@ -31,7 +31,7 @@ defmodule Report.RecordTest do
 
     test "create_record_of_activities/1 with valid data creates a record_of_activities" do
       assert {:ok, %RecordOfActivities{} = record_of_activities} =
-               Record.create_record_of_activities(@valid_attrs)
+               Record.create_record_of_activities(@valid_record_attrs)
 
       assert record_of_activities.last_edit_date == ~D[2010-04-17]
     end
@@ -40,7 +40,7 @@ defmodule Report.RecordTest do
       record_of_activities = record_of_activities_fixture()
 
       assert {:ok, record_of_activities} =
-               Record.update_record_of_activities(record_of_activities, @update_attrs)
+               Record.update_record_of_activities(record_of_activities, @update_record_attrs)
 
       assert %RecordOfActivities{} = record_of_activities
       assert record_of_activities.last_edit_date == ~D[2011-05-18]
@@ -61,12 +61,10 @@ defmodule Report.RecordTest do
       record_of_activities = record_of_activities_fixture()
       assert %Ecto.Changeset{} = Record.change_record_of_activities(record_of_activities)
     end
-  end
 
-  describe "entries" do
     alias Report.Record.Entry
 
-    @valid_attrs %{
+    @valid_entry_attrs %{
       categories: "some categories",
       delete_deadline: "some delete_deadline",
       department: "some department",
@@ -79,7 +77,7 @@ defmodule Report.RecordTest do
       title: "some title",
       type: "some type"
     }
-    @update_attrs %{
+    @update_entry_attrs %{
       categories: "some updated categories",
       delete_deadline: "some updated delete_deadline",
       department: "some updated department",
@@ -92,7 +90,7 @@ defmodule Report.RecordTest do
       title: "some updated title",
       type: "some updated type"
     }
-    @invalid_attrs %{
+    @invalid_entry_attrs %{
       categories: nil,
       delete_deadline: nil,
       department: nil,
@@ -107,10 +105,12 @@ defmodule Report.RecordTest do
     }
 
     def entry_fixture(attrs \\ %{}) do
+      record = record_of_activities_fixture(@valid_record_attrs)
+
       {:ok, entry} =
         attrs
-        |> Enum.into(@valid_attrs)
-        |> Record.create_entry()
+        |> Enum.into(@valid_entry_attrs)
+        |> Record.create_entry(record)
 
       entry
     end
@@ -122,11 +122,24 @@ defmodule Report.RecordTest do
 
     test "get_entry!/1 returns the entry with given id" do
       entry = entry_fixture()
-      assert Record.get_entry!(entry.id) == entry
+      db_record = Record.get_entry!(entry.id)
+      assert db_record.categories == entry.categories
+      assert db_record.delete_deadline == entry.delete_deadline
+      assert db_record.department == entry.department
+      assert db_record.legality == entry.legality
+      assert db_record.origin == entry.origin
+      assert db_record.purpose == entry.purpose
+      assert db_record.receiver == entry.receiver
+      assert db_record.sensitive_categories == entry.sensitive_categories
+      assert db_record.serial_number == entry.serial_number
+      assert db_record.title == entry.title
+      assert db_record.type == entry.type
     end
 
     test "create_entry/1 with valid data creates a entry" do
-      assert {:ok, %Entry{} = entry} = Record.create_entry(@valid_attrs)
+      record = record_of_activities_fixture(@valid_record_attrs)
+
+      assert {:ok, %Entry{} = entry} = Record.create_entry(@valid_entry_attrs, record)
       assert entry.categories == "some categories"
       assert entry.delete_deadline == "some delete_deadline"
       assert entry.department == "some department"
@@ -146,7 +159,7 @@ defmodule Report.RecordTest do
 
     test "update_entry/2 with valid data updates the entry" do
       entry = entry_fixture()
-      assert {:ok, entry} = Record.update_entry(entry, @update_attrs)
+      assert {:ok, entry} = Record.update_entry(entry, @update_entry_attrs)
       assert %Entry{} = entry
       assert entry.categories == "some updated categories"
       assert entry.delete_deadline == "some updated delete_deadline"
