@@ -145,9 +145,10 @@ defmodule Report.Record do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_entry(attrs \\ %{}) do
+  def create_entry(attrs, %RecordOfActivities{} = record) do
     %Entry{}
     |> Entry.changeset(attrs)
+    |> Ecto.Changeset.put_assoc(:record, record)
     |> Repo.insert()
   end
 

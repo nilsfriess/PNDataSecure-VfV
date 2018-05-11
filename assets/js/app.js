@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', event => {
 
   // Init all the components needed in the "add entry page"
   if (location.pathname === '/records/new') {
+    console.log('/records/new')
+
     initAddEntryModals()
     initAddEntryAutocomplete()
 
@@ -122,6 +124,10 @@ document.addEventListener('DOMContentLoaded', event => {
     })
 
     // End of Setup of DeleteDeadlineButton
+
+    document.querySelector('.add-btn').addEventListener('click', () => {
+      document.querySelector('form').submit()
+    })
 
     // document
     //   .querySelector('.new-entry-form')

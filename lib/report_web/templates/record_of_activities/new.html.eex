@@ -1,19 +1,20 @@
 <div class="row new-entry-page">
-  <%= form_for @changeset, "/entry/create", [class: "col s12 new-entry-form"], fn f -> %>
+  <%= form_for @conn, "/entry/create", [ class: "col s12 new-entry-form" ], fn f -> %>
+  <!-- <form action="/entry/create" method="POST", class="col s12 new-entry-form"></form> -->
     <div class="row">
       <div class="input-field col s8">
-        <%= textarea f, :title, [class: "materialize-textarea title-autocomplete", required: nil, id: :title] %>
+      <textarea name="title" id="title" class="materialize-textarea title-autocomplete" required></textarea>
         <label for="title">Bezeichnung *</label>
       </div>
       <div class="input-field col s2 offset-s2">
-        <%= number_input f, :serial_number, id: :serial_number %>
+        <input type="number" name="serial_number" id="serial_number">
         <label for="serial_number">Lfd. Nr. *</label>
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s8">
-        <%= text_input f, :contact_person, id: :contact_person %>
+        <input type="text" name="contact_person" id="contact_person">
         <label for="contact_person">Kontaktperson *</label>
       </div>
       <a href="#choosePersonInCharge" class="search-button col s2 offset-s2 waves-effect waves-light btn modal-trigger">Suchen</a>
@@ -21,7 +22,7 @@
 
     <div class="row">
       <div class="input-field col s8">
-        <%= text_input f, :person_in_charge, id: :person_in_charge %>
+        <input type="text" name="person_in_charge" id="person_in_charge">
         <label for="person_in_charge">Verantwortliche Person *</label>
       </div>
       <a href="#chooseDepartment" class="search-button col s2 offset-s2 waves-effect waves-light btn modal-trigger">Suchen</a>
@@ -79,10 +80,14 @@
       </div>
     </div>
 
-    <%= hidden_input(f, :categories_of_persons) %>
-    <%= hidden_input(f, :categories) %>
-    <%= hidden_input(f, :purposes) %>
-    <%= hidden_input(f, :deleteDeadlines) %>
+    <input type="hidden" name="categories_of_persons" id="categories_of_persons">
+    <input type="hidden" name="categories" id="categories">
+    <input type="hidden" name="purposes" id="purposes">
+    <input type="hidden" name="delete_deadlines" id="delete_deadlines">
+    
+
+    <button class="waves-effect waves-light btn add-btn" type="button">Erstellen</button>
+  <!-- </form> -->
   <% end %>
 </div>
 

@@ -50,6 +50,22 @@ const addCategoryOfPersonsCollectionItemToList = (list, input) => {
     event.preventDefault()
   })
 
+  // add the item to the hidden input #categories_of_persons
+  const entry_categories_of_persons_input = document.querySelector(
+    '#categories_of_persons'
+  )
+  const textContent =
+    entry_categories_of_persons_input.value == ''
+      ? '[]'
+      : entry_categories_of_persons_input.value
+
+  const current_categories_of_persons = JSON.parse(textContent)
+  // append new item
+  current_categories_of_persons.push(input.value)
+  entry_categories_of_persons_input.value = JSON.stringify(
+    current_categories_of_persons
+  )
+
   // add event handler for edit
 
   // get the modal
@@ -106,6 +122,16 @@ const addCategoryCollectionItemToList = (list, input) => {
     event.preventDefault()
   })
 
+  // add the item to the hidden input #categories
+  const entry_categories_input = document.querySelector('#categories')
+  const textContent =
+    entry_categories_input.value == '' ? '[]' : entry_categories_input.value
+
+  const current_categories = JSON.parse(textContent)
+  // append new item
+  current_categories.push(input.value)
+  entry_categories_input.value = JSON.stringify(current_categories)
+
   // add event handler for edit
 
   // get the modal
@@ -160,17 +186,15 @@ const addPurposeCollectionItemToList = (list, input) => {
     newListItem.remove()
   })
 
-  // add the item to the hidden input #entry_purposes
-  const entry_purposes_input = document.querySelector('#entry_purposes')
+  // add the item to the hidden input #purposes
+  const entry_purposes_input = document.querySelector('#purposes')
   const textContent =
-    entry_purposes_input.textContent == ''
-      ? '[]'
-      : entry_purposes_input.textContent
+    entry_purposes_input.value == '' ? '[]' : entry_purposes_input.value
 
   const current_purposes = JSON.parse(textContent)
   // append new item
   current_purposes.push(input.value)
-  entry_purposes_input.textContent = JSON.stringify(current_purposes)
+  entry_purposes_input.value = JSON.stringify(current_purposes)
 
   // add event handler for edit
   // get the modal
@@ -224,17 +248,19 @@ const addDeleteDeadlineCollectionItemToList = (list, input) => {
     newListItem.remove()
   })
 
-  // // add the item to the hidden input #entry_purposes
-  // const entry_purposes_input = document.querySelector('#entry_purposes')
-  // const textContent =
-  //   entry_purposes_input.textContent == ''
-  //     ? '[]'
-  //     : entry_purposes_input.textContent
+  // add the item to the hidden input #delete_deadlines
+  const entry_delete_deadlines_input = document.querySelector(
+    '#delete_deadlines'
+  )
+  const textContent =
+    entry_delete_deadlines_input.value == ''
+      ? '[]'
+      : entry_delete_deadlines_input.value
 
-  // const current_purposes = JSON.parse(textContent)
-  // // append new item
-  // current_purposes.push(input.value)
-  // entry_purposes_input.textContent = JSON.stringify(current_purposes)
+  const current_delete_deadlines = JSON.parse(textContent)
+  // append new item
+  current_delete_deadlines.push(input.value)
+  entry_delete_deadlines_input.value = JSON.stringify(current_delete_deadlines)
 
   // add event handler for edit
   // get the modal

@@ -3,4 +3,9 @@
 <%= if length(assigns[:current_record].entries) == 0 do  %>
   <h4>Noch keine Einträge vorhanden</h4>
   <p class="add-comapany-tap-target">Wie erstelle ich einen neuen Eintrag?</p>
+
+<% else %>
+  <%= for entry <- assigns[:current_record].entries do %>
+    <p><%= entry.title %></p>
+  <% end %>
 <% end %>
