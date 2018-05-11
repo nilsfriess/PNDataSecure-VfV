@@ -24,6 +24,62 @@ const editAndDeleteIcons = () => {
   return links
 }
 
+const addCategoryOfPersonsCollectionItemToList = (list, input) => {
+  if (!input.value.replace(/\s/g, '').length) return
+
+  const newListItem = document.createElement('li')
+  newListItem.className = 'collection-item'
+
+  const categoryItem = document.createTextNode(input.value)
+  newListItem.appendChild(categoryItem)
+
+  const iconLinks = newListItem.appendChild(editAndDeleteIcons())
+
+  // show edit and delete icons on hover
+  newListItem.addEventListener('mouseover', () => {
+    iconLinks.classList.add('scale-in')
+  })
+
+  newListItem.addEventListener('mouseleave', () => {
+    iconLinks.classList.remove('scale-in')
+  })
+
+  // add event handler for deletion
+  iconLinks.childNodes[1].addEventListener('click', event => {
+    newListItem.remove()
+    event.preventDefault()
+  })
+
+  // add event handler for edit
+
+  // get the modal
+  const editCategoryElem = document.querySelector('#categoryOfPersonEditModal')
+  console.log(editCategoryElem)
+
+  const modalInstance = M.Modal.getInstance(editCategoryElem)
+
+  iconLinks.childNodes[0].addEventListener('click', () => {
+    modalInstance.open()
+
+    const currentListItemValue = newListItem.childNodes[0].textContent
+
+    document.querySelector('#categoryOfPersonEdit').value = currentListItemValue
+    M.updateTextFields()
+
+    // save new value on modal close
+    modalInstance.options.onCloseStart = () => {
+      newListItem.childNodes[0].textContent = document.querySelector(
+        '#categoryOfPersonEdit'
+      ).value
+    }
+  })
+
+  list.appendChild(newListItem)
+
+  input.value = ''
+  input.focus()
+}
+
 const addCategoryCollectionItemToList = (list, input) => {
   if (!input.value.replace(/\s/g, '').length) return
 
@@ -45,14 +101,16 @@ const addCategoryCollectionItemToList = (list, input) => {
   })
 
   // add event handler for deletion
-  iconLinks.childNodes[1].addEventListener('click', () => {
+  iconLinks.childNodes[1].addEventListener('click', event => {
     newListItem.remove()
+    event.preventDefault()
   })
 
   // add event handler for edit
 
   // get the modal
   const editCategoryElem = document.querySelector('#categoryEditModal')
+  console.log(editCategoryElem)
   const modalInstance = M.Modal.getInstance(editCategoryElem)
 
   iconLinks.childNodes[0].addEventListener('click', () => {
@@ -102,8 +160,19 @@ const addPurposeCollectionItemToList = (list, input) => {
     newListItem.remove()
   })
 
-  // add event handler for edit
+  // add the item to the hidden input #entry_purposes
+  const entry_purposes_input = document.querySelector('#entry_purposes')
+  const textContent =
+    entry_purposes_input.textContent == ''
+      ? '[]'
+      : entry_purposes_input.textContent
 
+  const current_purposes = JSON.parse(textContent)
+  // append new item
+  current_purposes.push(input.value)
+  entry_purposes_input.textContent = JSON.stringify(current_purposes)
+
+  // add event handler for edit
   // get the modal
   const editPurposeElem = document.querySelector('#purposeEditModal')
   const modalInstance = M.Modal.getInstance(editPurposeElem)
@@ -130,8 +199,74 @@ const addPurposeCollectionItemToList = (list, input) => {
   input.focus()
 }
 
+const addDeleteDeadlineCollectionItemToList = (list, input) => {
+  if (!input.value.replace(/\s/g, '').length) return
+
+  const newListItem = document.createElement('li')
+  newListItem.className = 'collection-item'
+
+  const categoryItem = document.createTextNode(input.value)
+  newListItem.appendChild(categoryItem)
+
+  const iconLinks = newListItem.appendChild(editAndDeleteIcons())
+
+  // show edit and delete icons on hover
+  newListItem.addEventListener('mouseover', () => {
+    iconLinks.classList.add('scale-in')
+  })
+
+  newListItem.addEventListener('mouseleave', () => {
+    iconLinks.classList.remove('scale-in')
+  })
+
+  // add event handler for deletion
+  iconLinks.childNodes[1].addEventListener('click', () => {
+    newListItem.remove()
+  })
+
+  // // add the item to the hidden input #entry_purposes
+  // const entry_purposes_input = document.querySelector('#entry_purposes')
+  // const textContent =
+  //   entry_purposes_input.textContent == ''
+  //     ? '[]'
+  //     : entry_purposes_input.textContent
+
+  // const current_purposes = JSON.parse(textContent)
+  // // append new item
+  // current_purposes.push(input.value)
+  // entry_purposes_input.textContent = JSON.stringify(current_purposes)
+
+  // add event handler for edit
+  // get the modal
+  const editPurposeElem = document.querySelector('#deleteDeadlineEditModal')
+  const modalInstance = M.Modal.getInstance(editPurposeElem)
+
+  iconLinks.childNodes[0].addEventListener('click', () => {
+    modalInstance.open()
+
+    const currentListItemValue = newListItem.childNodes[0].textContent
+
+    document.querySelector('#deleteDeadlineEdit').value = currentListItemValue
+    M.updateTextFields()
+
+    // save new value on modal close
+    modalInstance.options.onCloseStart = () => {
+      newListItem.childNodes[0].textContent = document.querySelector(
+        '#deleteDeadlineEdit'
+      ).value
+    }
+  })
+
+  list.appendChild(newListItem)
+
+  input.value = ''
+  input.focus()
+}
+
 export {
   editAndDeleteIcons,
+  addCategoryOfPersonsCollectionItemToList,
   addCategoryCollectionItemToList,
-  addPurposeCollectionItemToList
+  addPurposeCollectionItemToList,
+  addDeleteDeadlineCollectionItemToList
 }

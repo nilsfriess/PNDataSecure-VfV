@@ -37,6 +37,8 @@ defmodule ReportWeb.Router do
     get("/records/new", RecordOfActivitiesController, :new)
     get("/records/export", RecordOfActivitiesController, :export)
 
+    post("/entry/create", EntryController, :create)
+
     get("/masterdata", RecordOfActivitiesController, :master_data)
   end
 end

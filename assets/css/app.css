@@ -1,106 +1,111 @@
 /* This file is for your main application css. */
 
 body {
-    overflow-y: scroll;
-    overflow-x: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 /* add padding for sidenav */
 
 header,
 footer {
-    padding-left: 300px;
+  padding-left: 300px;
 }
 
 main {
-    padding: 24px;
-    padding-left: 324px;
-    max-width: 1400px;
-    margin: 0 auto;
+  padding: 24px;
+  padding-left: 324px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 nav {
-    padding-left: 24px;
+  padding-left: 24px;
 }
 
 /* component styles */
 
 .title {
-    padding-bottom: 24px;
+  padding-bottom: 24px;
 }
 
 .user-view {
-    text-align: right;
-    height: 130px;
+  text-align: right;
+  height: 130px;
 }
 
 .logout,
 .settings {
-    position: absolute;
-    bottom: 80px;
-    width: 100%;
+  position: absolute;
+  bottom: 80px;
+  width: 100%;
 }
 
 .settings {
-    bottom: 135px;
+  bottom: 135px;
 }
 
 .background-logo {
-    width: 100%;
+  width: 100%;
 }
 
 .add-comapany-tap-target:hover {
-    cursor: pointer;
-    text-decoration: underline;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .tap-target-content p {
-    line-height: 1.5em;
+  line-height: 1.5em;
 }
 
 .search-button {
-    margin-top: 22px;
+  margin-top: 22px;
 }
 
 .add-category-input-field {
-    position: relative;
+  position: relative;
 }
 
 .input-btn {
-    position: absolute;
-    right: -65px;
-    top: 0px;
+  position: absolute;
+  right: -65px;
+  top: 0px;
 }
 
 .input-btn i {
-    color: teal;
-    font-size: 2.5em;
-    transition: 300ms;
+  color: teal;
+  font-size: 2.5em;
+  transition: 300ms;
 }
 
 .input-btn i:hover {
-    color: #fff;
+  color: #fff;
 }
 
 .delete-icon {
-    margin-left: 12px;
+  margin-left: 12px;
 }
 
 .margin-top {
-    margin-top: 60px;
+  margin-top: 60px;
 }
 
 .divider {
-    width: 93%;
-    transform: translateX(7%);
+  width: 93%;
+  transform: translateX(7%);
+}
+
+.new-entry-page .description {
+  margin: 12px 0;
+  line-height: 1.2em;
 }
 
 @media only screen and (max-width: 992px) {
-    header,
-    footer {
-        padding-left: 0;
-    }
-    main {
-        padding-left: 24px;
-    }
+  header,
+  footer {
+    padding-left: 0;
+  }
+  main {
+    padding-left: 24px;
+  }
 }

@@ -40,19 +40,19 @@ defmodule Report.Record.Entry do
       :legality,
       :type
     ])
-    |> validate_required([
-      :title,
-      :serial_number,
-      :categories,
-      :sensitive_categories,
-      :delete_deadline,
-      :origin,
-      :department,
-      :receiver,
-      :purpose,
-      :legality,
-      :type
-    ])
+    # |> validate_required([
+    #   :title,
+    #   :serial_number,
+    #   :categories,
+    #   :sensitive_categories,
+    #   :delete_deadline,
+    #   :origin,
+    #   :department,
+    #   :receiver,
+    #   :purpose,
+    #   :legality,
+    #   :type
+    # ])
     |> unique_constraint(:serial_number)
   end
 end

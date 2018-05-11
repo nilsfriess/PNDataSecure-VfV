@@ -1,28 +1,28 @@
-<div class="row">
-  <%= form_for @changeset, "/entry/create", [class: "col s12"], fn f -> %>
+<div class="row new-entry-page">
+  <%= form_for @changeset, "/entry/create", [class: "col s12 new-entry-form"], fn f -> %>
     <div class="row">
       <div class="input-field col s8">
-        <%= textarea f, :title, [class: "materialize-textarea title-autocomplete", required: nil] %>
-        <label for="entry_title">Bezeichnung *</label>
+        <%= textarea f, :title, [class: "materialize-textarea title-autocomplete", required: nil, id: :title] %>
+        <label for="title">Bezeichnung *</label>
       </div>
       <div class="input-field col s2 offset-s2">
-        <input type="number" id="serial-number">
-        <label for="serial-number">Lfd. Nr. *</label>
+        <%= number_input f, :serial_number, id: :serial_number %>
+        <label for="serial_number">Lfd. Nr. *</label>
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s8">
-        <%= text_input f, :contact_person %>
-        <label for="entry_contact_person">Kontaktperson *</label>
+        <%= text_input f, :contact_person, id: :contact_person %>
+        <label for="contact_person">Kontaktperson *</label>
       </div>
       <a href="#choosePersonInCharge" class="search-button col s2 offset-s2 waves-effect waves-light btn modal-trigger">Suchen</a>
     </div>
 
     <div class="row">
       <div class="input-field col s8">
-        <%= text_input f, :person_in_charge %>
-        <label for="entry_person_in_charge">Verantwortliche Person *</label>
+        <%= text_input f, :person_in_charge, id: :person_in_charge %>
+        <label for="person_in_charge">Verantwortliche Person *</label>
       </div>
       <a href="#chooseDepartment" class="search-button col s2 offset-s2 waves-effect waves-light btn modal-trigger">Suchen</a>
       <!-- <a href="#choosePersonInCharge" class="search-person-in-charge-button col s5 offset-s1 waves-effect waves-light btn modal-trigger">Verantwortlichen suchen</a> -->
@@ -30,7 +30,7 @@
 
     <div class="row margin-top">
       <h5>Kategorien betroffener Personen</h5>
-      <p>Eine (allgemeine) Beschreibung der Personen bzw. Personengruppen,<br> deren Daten verarbeitet werden</p>
+      <p class="description col s8">Eine (allgemeine) Beschreibung der Personen bzw. Personengruppen, deren Daten verarbeitet werden</p>
       <ul class="col s8 collection person-categories"></ul>
       <div class="input-field col s8 add-person-category-input-field">
         <input type="text" name="personsCategory" id="personsCategory">
@@ -43,7 +43,7 @@
 
     <div class="row margin-top">
       <h5>Kategorien personenbezogener Daten</h5>
-      <p>Eine Beschreibung welcher Kategorie die verarbeiteten <br> personenbezogenen Daten zuzuordnen sind</p>
+      <p class="description col s8">Eine Beschreibung welcher Kategorie die verarbeiteten  personenbezogenen Daten zuzuordnen sind</p>
       <ul class="col s8 collection categories"></ul>
       <div class="input-field col s8 add-category-input-field">
         <input type="text" name="category" id="category">
@@ -68,16 +68,21 @@
 
     <div class="row margin-top">
       <h5>Speicherdauer/ Löschfristen</h5>
-      <p>Falls möglich, die vorgesehehen Fristen für die Löschung der <br>verschiedenen Kategorien</p>
-      <ul class="col s8 collection purposes"></ul>
-      <div class="input-field col s8 add-purpose-input-field">
-        <input type="text" name="purpose" id="purpose"> 
-        <label for="purpose">Weitere  hinzufügen</label>
-        <a class="btn-flat btn-large btn-floating waves-effect waves-teal add-purpose-btn input-btn">
+      <p class="description col s8">Falls möglich, die vorgesehehen Fristen für die Löschung der verschiedenen Kategorien</p>
+      <ul class="col s8 collection delete-deadlines"></ul>
+      <div class="input-field col s8 add-delete-deadlines-input-field">
+        <input type="text" name="delete-deadlines" id="delete-deadlines"> 
+        <label for="delete-deadlines">Weitere  hinzufügen</label>
+        <a class="btn-flat btn-large btn-floating waves-effect waves-teal add-delete-deadlines-btn input-btn">
           <i class="material-icons medium add-icon">add</i>
         </a>
       </div>
     </div>
+
+    <%= hidden_input(f, :categories_of_persons) %>
+    <%= hidden_input(f, :categories) %>
+    <%= hidden_input(f, :purposes) %>
+    <%= hidden_input(f, :deleteDeadlines) %>
   <% end %>
 </div>
 
@@ -111,6 +116,18 @@
   </div>
 </div>
 
+<div class="modal" id="categoryOfPersonEditModal">
+  <div class="modal-content">
+    <div class="input-field">
+      <input type="text" name="categoryOfPersonEdit" id="categoryOfPersonEdit">
+      <label for="categoryOfPersonEdit">Bearbeiten</label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Speichern</a>
+  </div>
+</div>
+
 <div class="modal" id="categoryEditModal">
   <div class="modal-content">
     <div class="input-field">
@@ -128,6 +145,18 @@
     <div class="input-field">
       <input type="text" name="purposeEdit" id="purposeEdit">
       <label for="purposeEdit">Bearbeiten</label>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Speichern</a>
+  </div>
+</div>
+
+<div class="modal" id="deleteDeadlineEditModal">
+  <div class="modal-content">
+    <div class="input-field">
+      <input type="text" name="deleteDeadlineEdit" id="deleteDeadlineEdit">
+      <label for="deleteDeadlineEdit">Bearbeiten</label>
     </div>
   </div>
   <div class="modal-footer">
